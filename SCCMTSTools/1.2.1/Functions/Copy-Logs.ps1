@@ -74,7 +74,7 @@ function Copy-Logs {
 
     # Try and copy the logs.
 
-    Write-CMTraceLog -Message "Attempting to copy logs from ""$Source"" to ""$Destination"" ..."
+    Write-CMTraceLog -Message "Attempting to copy logs from ""$Path"" to ""$Destination"" ..."
 
     $LogsCopied = $False
     try {
