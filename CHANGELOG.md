@@ -13,3 +13,6 @@
 This was bug fixes and minor enhancements to items added in 1.2.0:
 * Fixed bugs with `Copy-Logs`.
 * Adjusted formating on `Show-ImagingErrorBox`.
+
+# 1.2.2
+* Fixed a bug where `Copy-Logs` wasn't outputting a `bool`.
