@@ -52,12 +52,13 @@ function Copy-Logs {
     # Try and fetch the computer name. We need this to construct the name of the directory we will dump the
     # logs to.
 
-    # Fetch from the variable that is set on re-images.
-    $ComputerName = Get-TSVariable -Name '_SMSTSMachineName'
+    # Fetch from the variable that is set on new images. We fetch from this first as _SMSTSMachineName
+    # will also be set on new images, but to the auto-generated value starting with MININT.
+    $ComputerName = Get-TSVariable -Name 'OSDComputerName'
 
     if (-not $ComputerName) {
-        # It isn't a re-image. Look at the variable that is set on a new image.
-        $ComputerName = Get-TSVariable -Name 'OSDComputerName'
+        # It is a re-image.
+        $ComputerName = Get-TSVariable -Name '_SMSTSMachineName'
     }
 
     if (-not $ComputerName) {
@@ -67,8 +68,9 @@ function Copy-Logs {
 
     # Copy the logs.
 
-    # Calculate the real destination.
-    $Destination = Join-Path -Path $Destination -ChildPath "$ComputerName_$(Get-Date -Format $TimestampFormat)"
+    # Calculate the real destination. Don't fotget to escape the underscore, as PowerShell
+    # seems to otherwise treat this in a special way.
+    $Destination = Join-Path -Path $Destination -ChildPath "$ComputerName`_$(Get-Date -Format $TimestampFormat)"
 
     # Try and copy the logs.
 
