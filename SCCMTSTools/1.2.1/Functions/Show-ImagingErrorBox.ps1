@@ -29,11 +29,11 @@ function Show-ImagingErrorBox {
     # Show the dialog box.
 
     $Body = "The imaging process failed.`n"
-    $Body += "`tFailing Step: $(Get-TSVariable -Name '_SMSTSLastActionName')`n"
-    $Body += "`tError Code: $(Get-TSVariable -Name '_SMSTSLastActionRetCode')"
+    $Body += "`tFAILING STEP: $(Get-TSVariable -Name '_SMSTSLastActionName')`n"
+    $Body += "`tERROR CODE: $(Get-TSVariable -Name '_SMSTSLastActionRetCode')"
 
     if ($PSBoundParameters.ContainsKey('ExtraMessage')) {
-        $Body += "`n$ExtraMessage"
+        $Body += "`n`n$ExtraMessage"
     }
 
     Show-MessageBox -Body $Body -Title 'Imaging Error' -Image 'Error'
