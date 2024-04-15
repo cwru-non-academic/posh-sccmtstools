@@ -87,4 +87,7 @@ function Copy-Logs {
     if (-not $LogsCopied) {
         Write-CMTraceLog -Message "Failed to copy logs from ""$Path"" into ""$Destination""." -Type 'Error'
     }
+
+    # Output the result.
+    $LogsCopied
 }
