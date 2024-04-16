@@ -7,8 +7,11 @@ function Show-ImagingErrorBox {
 
             This includes:
                 * A message indicating the task sequence failed.
-                * The step the task sequence failed on.
-                * The error code.
+                * The name of the last step the task sequence ran.
+                * The exit code of the last step the task sequence ran.
+
+            Be sure to call this from the first step in your error handling group. If you don't,
+            the step name and exit code displayed will not be for the step that caused the error.
             
             This must be called from an interactive PowerShell session. ServiceUI can do this.
 
@@ -29,8 +32,8 @@ function Show-ImagingErrorBox {
     # Show the dialog box.
 
     $Body = "The imaging process failed.`n"
-    $Body += "`tFAILING STEP: $(Get-TSVariable -Name '_SMSTSLastActionName')`n"
-    $Body += "`tERROR CODE: $(Get-TSVariable -Name '_SMSTSLastActionRetCode')"
+    $Body += "`tLAST STEP NAME: $(Get-TSVariable -Name '_SMSTSLastActionName')`n"
+    $Body += "`tLAST STEP EXIT CODE: $(Get-TSVariable -Name '_SMSTSLastActionRetCode')"
 
     if ($PSBoundParameters.ContainsKey('ExtraMessage')) {
         $Body += "`n`n$ExtraMessage"
