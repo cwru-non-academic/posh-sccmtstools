@@ -16,3 +16,6 @@ This was bug fixes and minor enhancements to items added in 1.2.0:
 
 # 1.2.2
 * Fixed a bug where `Copy-Logs` wasn't outputting a `bool`.
+
+# 1.2.3
+* Added clarification on when to call `Show-ImagingErrorBox`.
