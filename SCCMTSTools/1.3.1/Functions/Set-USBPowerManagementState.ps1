@@ -1,4 +1,4 @@
-function Set-SerialPortPowerManagementState {
+function Set-USBPowerManagementState {
     <#
         .SYNOPSIS
             Sets the state of the power management on all USB devices.
